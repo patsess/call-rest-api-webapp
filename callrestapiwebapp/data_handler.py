@@ -14,14 +14,15 @@ class DataHandler:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
 
-    def parse_response_dict(self, response_dict):
-        """Parse a response dict from an api call into a data frame
+    def parse_response_json(self, response_json):
+        """Parse a response json representation from an api call into a data
+        frame
 
-        :param response_dict: (dict)
+        :param response_json: (dict, or list of dict)
         :return response_df: (pd.DataFrame)
         """
-        self.logger.info("parsing response dict into a data frame")
-        response_df = pd.DataFrame(response_dict)
+        self.logger.info("parsing response json into a data frame")
+        response_df = pd.json_normalize(response_json)
         # TODO: try-except different orients, using from_dict()
 
         response_df = self._filter_out_problematic_columns(

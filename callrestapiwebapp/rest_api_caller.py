@@ -19,7 +19,7 @@ class RestApiCaller:
 
         :param url: (str)
         :param sleep: (int) seconds to pause after call
-        :return response_dict: (dict)
+        :return response_json: (dict, or list of dict) json representation
         """
         self.logger.info(f"making api call to url {url}")
         with requests.Session() as session:
@@ -31,10 +31,10 @@ class RestApiCaller:
             return None
 
         time.sleep(sleep)  # guard against over-loading api
-        response_dict = response.json()
+        response_json = response.json()
         # TODO: also handle non-json responses?
-        self.logger.info("returning response dict")
-        return response_dict
+        self.logger.info("returning response json representation")
+        return response_json
 
 
 if __name__ == '__main__':
@@ -45,8 +45,8 @@ if __name__ == '__main__':
         f"lat=51.5080&lng=-0.1281")  # &date=2019-02
 
     caller = RestApiCaller()
-    response_dict = caller.make_api_call(url=url)
-    df = pd.DataFrame(response_dict)
+    response_json = caller.make_api_call(url=url)
+    df = pd.json_normalize(response_json)
 
     print(df.shape)
     print(df.iloc[0])

@@ -13,8 +13,6 @@ __author__ = 'psessford'
 # TODO:
 #  - have a dropdown to preview different orientations of the data, and a
 #  button to "accept" the data
-#  - handle "problematic" columns in DataHandler (e.g. by parsing and expanding
-#  each column that needs it)
 #  - allow data to be uploaded to a data base
 #  - allow scheduling? (and allow changing the downloaded csv names? add date
 #  to name?) ...AND... maybe once the user has chosen their data, create them
@@ -85,10 +83,10 @@ def update_data(n_clicks, target_url, data_download_link_style):
     changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
     if 'make-api-call-button' in changed_id:
         api_caller = RestApiCaller()
-        response_dict = api_caller.make_api_call(url=target_url)
+        response_json = api_caller.make_api_call(url=target_url)
         data_handler = DataHandler()
-        response_df = data_handler.parse_response_dict(
-            response_dict=response_dict)
+        response_df = data_handler.parse_response_json(
+            response_json=response_json)
         _ = data_download_link_style.pop('display')
     else:
         response_df = pd.DataFrame({})
