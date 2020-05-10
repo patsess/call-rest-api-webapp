@@ -1,2 +1,4 @@
+__pycache__/
 callrestapiwebapp/__pycache__/
 callrestapiwebapp/app_utils/__pycache__/
+.vscode/
