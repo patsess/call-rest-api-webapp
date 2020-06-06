@@ -4,7 +4,7 @@ import pandas as pd
 import dash
 from dash.dependencies import Input, Output, State
 import dash_table
-from callrestapiwebapp.app_utils.initial_layout import get_initial_layout
+from callrestapiwebapp.app_utils.initial_layout import AppInitialLayout
 from callrestapiwebapp.rest_api_caller import RestApiCaller
 from callrestapiwebapp.data_handler import DataHandler
 
@@ -32,7 +32,7 @@ https://community.plotly.com/t/allowing-users-to-download-csv-on-click/5550/8
 
 
 app = dash.Dash(__name__)
-app.layout = get_initial_layout()
+app.layout = AppInitialLayout.get_initial_layout()
 
 
 @app.callback(
