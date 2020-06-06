@@ -11,6 +11,10 @@ from callrestapiwebapp.data_handler import DataHandler
 __author__ = 'psessford'
 
 # TODO:
+#  - have an "add url param" button, allow empty url params (i.e. not used if 
+#  the key is empty); probably handle it by having a callback that outputs the 
+#  children (i.e. a list) of url param inputs, so that I can have as many as I 
+#  like without crazy hardcoding
 #  - have a dropdown to preview different orientations of the data, and a
 #  button to "accept" the data
 #  - allow data to be uploaded to a data base
