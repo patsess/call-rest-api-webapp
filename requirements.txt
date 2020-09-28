@@ -10,6 +10,7 @@ dash-renderer==1.4.1
 dash-table==4.7.0
 Flask==1.1.2
 Flask-Compress==1.5.0
+flatten-json==0.1.7
 future==0.18.2
 idna==2.9
 isort==4.3.21
