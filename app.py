@@ -1,4 +1,5 @@
 
+import logging
 import urllib.parse
 import pandas as pd
 import dash
@@ -121,4 +122,5 @@ def update_download_link(stored_data):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    logging.basicConfig(level=logging.INFO)
+    app.run_server(debug=False)
