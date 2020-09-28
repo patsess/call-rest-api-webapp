@@ -5,8 +5,6 @@ import requests
 
 __author__ = 'psessford'
 
-logging.basicConfig(level=logging.INFO)
-
 
 class RestApiCaller:
     """Helper to make calls to REST API
@@ -38,7 +36,9 @@ class RestApiCaller:
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     import pandas as pd
+    import flatten_json
 
     url = (
         f"https://data.police.uk/api/crimes-street/all-crime?"
@@ -46,7 +46,9 @@ if __name__ == '__main__':
 
     caller = RestApiCaller()
     response_json = caller.make_api_call(url=url)
-    df = pd.json_normalize(response_json)
+    # df = pd.json_normalize(response_json)
+    response_json = (flatten_json.flatten(d) for d in response_json)
+    df = pd.DataFrame(response_json)
 
     print(df.shape)
     print(df.iloc[0])
